@@ -75,5 +75,22 @@ public class Company {
 			System.out.println("Employee not found");
 		}
 	}
+	
+	public void deleteEmployee(String name) {
+		
+		for(int i = 0 ; i < employees.length; i ++) {
+			
+			if(name.equalsIgnoreCase(employees[i].getName())) {
+				
+				employees[i] = null;
+				
+				System.out.println("Employee " + name + "deleted");
+			}
+			else {
+				System.out.println("Employee not employed here");
+			}
+		
+	}
 
+}
 }
