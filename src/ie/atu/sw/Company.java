@@ -76,21 +76,35 @@ public class Company {
 		}
 	}
 	
-	public void deleteEmployee(String name) {
-		
-		for(int i = 0 ; i < employees.length; i ++) {
-			
-			if(name.equalsIgnoreCase(employees[i].getName())) {
-				
-				employees[i] = null;
-				
-				System.out.println("Employee " + name + "deleted");
-			}
-			else {
-				System.out.println("Employee not employed here");
-			}
-		
+	public void compactArray() {
+	    int shiftIndex = 0;
+	    for (int i = 0; i < employees.length; i++) {
+	        if (employees[i] != null) {
+	            employees[shiftIndex++] = employees[i];
+	        }
+	    }
+	    // Fill the rest of the array with nulls
+	    for (int i = shiftIndex; i < employees.length; i++) {
+	        employees[i] = null;
+	    }
 	}
+	
+	public void deleteEmployee(String name) {
+	    boolean found = false;
 
+	    for (int i = 0; i < employees.length; i++) {
+	        if (employees[i] != null && name.equals(employees[i].getName())) {
+	            System.out.println("Employee " + employees[i].getName() + " deleted from system");
+	            employees[i] = null;
+	            found = true;
+	            compactArray(); // Compact the array after deletion
+	            break; // Exit the loop once the employee is deleted
+	        }
+	    }
+
+	    if (!found) {
+	        System.out.println("Employee not employed here");
+	    }
+	}
 }
-}
+
